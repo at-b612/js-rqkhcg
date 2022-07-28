@@ -1,0 +1,9 @@
+{
+  "name": "js",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "three": "^0.143.0",
+    "tween": "^0.9.0"
+  }
+}
