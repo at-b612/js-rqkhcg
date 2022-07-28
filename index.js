@@ -34,7 +34,7 @@ function init() {
     1,
     1000
   );
-  camera.position.z = 200;
+  camera.position.z = 100;
   scene.add(camera);
 
   rectangle = new THREE.Object3D();
@@ -47,47 +47,42 @@ function init() {
   //scene.add(box);
 
   light1 = new THREE.SpotLight(0x62a9af, 1);
-  light1.position.set(-50, 0, 15);
+  light1.position.set(-100, 0, 101);
   light1.angle = Math.PI / 1;
   light1.penumbra = 0.7;
-  light1.decay = 2;
-  light1.distance = 300;
+  light1.decay = 2.5;
+  light1.distance = 400;
   light1.castShadow = true;
-  light1.shadow.mapSize.width = 512; // default
-  light1.shadow.mapSize.height = 512; // default
-  light1.shadow.camera.near = 1; // default
-  light1.shadow.camera.far = 500; // default
-  light1.shadow.focus = 1; // default
   scene.add(light1);
 
   light2 = new THREE.SpotLight(0x0700b2, 1);
-  light2.position.set(50, 0, 20);
+  light2.position.set(100, 0, 101);
   light2.angle = Math.PI / 1;
   light2.penumbra = 0.7;
-  light2.decay = 2;
-  light2.distance = 300;
+  light2.decay = 2.5;
+  light2.distance = 400;
   light2.castShadow = true;
   scene.add(light2);
 
   light3 = new THREE.SpotLight(0x05ebe3, 1);
-  light3.position.set(0, 100, 25);
+  light3.position.set(0, 160, 101);
   light3.angle = Math.PI / 1;
   light3.penumbra = 0.7;
-  light3.decay = 2;
-  light3.distance = 300;
+  light3.decay = 2.5;
+  light3.distance = 400;
   light3.castShadow = true;
   scene.add(light3);
 
   light4 = new THREE.SpotLight(0xd800ff, 1);
-  light4.position.set(0, -100, 30);
+  light4.position.set(0, -160, 101);
   light4.angle = Math.PI / 1;
   light4.penumbra = 0.7;
-  light4.decay = 2;
-  light4.distance = 300;
+  light4.decay = 2.5;
+  light4.distance = 400;
   light4.castShadow = true;
   scene.add(light4);
 
-  var geometry1 = new THREE.PlaneGeometry(5, 10);
+  var geometry1 = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight);
   //var geometry2 = new THREE.BoxGeometry(1,3,.5);
 
   var material = new THREE.MeshPhongMaterial({
@@ -127,9 +122,11 @@ function init() {
       //child.material = object_material;
     }
   });
-  object.add(planet);
-  object.position.z = 10;
-  object.scale.set( 20, 20, 20 );
+  object.add(object_material);
+  object.position.z = 20;
+  object.position.y = -10
+  object.scale.set( 3, 3, 3 );
+  object.castShadow = true;
   scene.add(object);
 
   var ambientLight = new THREE.AmbientLight(0x999999, 0.1);
@@ -147,16 +144,16 @@ function onWindowResize() {
 function animate() {
   requestAnimationFrame(animate);
 
-  const time = Date.now() * 0.001;
+  const time = Date.now() * 0.0005;
 
-  light1.position.y = Math.cos(time * 0.9) * 40;
-  light1.position.z = Math.cos(time * 0.7) * -40;
-  light2.position.y = Math.sin(time * 0.7) * -20;
-  light2.position.z = Math.sin(time * 0.7) * 20;
+  light1.position.y = Math.cos(time * 0.9) * 100;
+  //light1.position.z = Math.cos(time * 0.7) * 100;
+  light2.position.y = Math.sin(time * 0.7) * -100;
+  //light2.position.z = Math.sin(time * 0.7) * 100;
   light3.position.x = Math.cos(time * 0.8) * 20;
-  light3.position.z = Math.cos(time * 0.3) * 20;
+  //light3.position.z = Math.cos(time * 0.3) * 100;
   light4.position.x = Math.sin(time * 0.85) * -20;
-  light4.position.z = Math.sin(time * 0.3) * 20;
+  //light4.position.z = Math.sin(time * 0.3) * 100;
   //box.position.z = 10
   //box.rotation.x = .3
   //box.rotation.y = .2
