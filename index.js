@@ -56,7 +56,7 @@ function init() {
   scene.add(light1);
 
   light2 = new THREE.SpotLight(0x0700b2, 1);
-  light2.position.set(100, 0, 101);
+  light2.position.set(100, 0, 121);
   light2.angle = Math.PI / 1;
   light2.penumbra = 0.7;
   light2.decay = 2.5;
@@ -65,7 +65,7 @@ function init() {
   scene.add(light2);
 
   light3 = new THREE.SpotLight(0x05ebe3, 1);
-  light3.position.set(0, 160, 101);
+  light3.position.set(0, 160, 111);
   light3.angle = Math.PI / 1;
   light3.penumbra = 0.7;
   light3.decay = 2.5;
@@ -74,7 +74,7 @@ function init() {
   scene.add(light3);
 
   light4 = new THREE.SpotLight(0xd800ff, 1);
-  light4.position.set(0, -160, 101);
+  light4.position.set(0, -160, 131);
   light4.angle = Math.PI / 1;
   light4.penumbra = 0.7;
   light4.decay = 2.5;
@@ -83,7 +83,6 @@ function init() {
   scene.add(light4);
 
   var geometry1 = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight);
-  //var geometry2 = new THREE.BoxGeometry(1,3,.5);
 
   var material = new THREE.MeshPhongMaterial({
     color: 0xffffff,
@@ -108,11 +107,7 @@ function init() {
   planet.scale.x = planet.scale.y = planet.scale.z = 16;
   rectangle.add(planet);
 
-  //var planet2 = new THREE.Mesh(geometry2, mat);
-  //planet2.scale.x = planet2.scale.y = planet2.scale.z = 8;
-  //box.add(planet2);
-
-  var object_material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+  var object_material = new THREE.MeshPhongMaterial({ color: 0xffffff });
 
   const objLoader = new OBJLoader();
   const object = objLoader.parse(obj.default);
@@ -123,13 +118,13 @@ function init() {
     }
   });
   object.add(object_material);
-  object.position.z = 20;
+  object.position.z = 40;
   object.position.y = -10
-  object.scale.set( 3, 3, 3 );
+  object.scale.set( 4, 4, 4 );
   object.castShadow = true;
   scene.add(object);
 
-  var ambientLight = new THREE.AmbientLight(0x999999, 0.1);
+  var ambientLight = new THREE.AmbientLight(0x999999, 0);
   scene.add(ambientLight);
 
   window.addEventListener('resize', onWindowResize, false);
@@ -147,16 +142,13 @@ function animate() {
   const time = Date.now() * 0.0005;
 
   light1.position.y = Math.cos(time * 0.9) * 100;
-  //light1.position.z = Math.cos(time * 0.7) * 100;
+  light1.position.z = Math.cos(time * 0.7) * 100;
   light2.position.y = Math.sin(time * 0.7) * -100;
-  //light2.position.z = Math.sin(time * 0.7) * 100;
-  light3.position.x = Math.cos(time * 0.8) * 20;
-  //light3.position.z = Math.cos(time * 0.3) * 100;
-  light4.position.x = Math.sin(time * 0.85) * -20;
-  //light4.position.z = Math.sin(time * 0.3) * 100;
-  //box.position.z = 10
-  //box.rotation.x = .3
-  //box.rotation.y = .2
+  light2.position.z = Math.sin(time * 0.7) * 100;
+  light3.position.x = Math.cos(time * 0.8) * 100;
+  light3.position.z = Math.cos(time * 0.3) * 100;
+  light4.position.x = Math.sin(time * 0.85) * -100;
+  light4.position.z = Math.sin(time * 0.3) * 100;
 
   renderer.clear();
 
