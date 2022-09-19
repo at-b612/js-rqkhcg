@@ -84,7 +84,7 @@ function init() {
 
   var geometry1 = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight);
 
-  var material = new THREE.MeshPhongMaterial({
+  var material = new THREE.MeshDepthMaterial({
     color: 0xffffff,
     flatShading: THREE.FlatShading,
   });
